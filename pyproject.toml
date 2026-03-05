@@ -11,8 +11,9 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "huggingface_hub>=0.34.4"
+    "huggingface_hub>=0.34.4",
 ]
+
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -20,22 +21,35 @@ classifiers = [
 ]
 dynamic = ["version"]
 
+[project.optional-dependencies]
+sagemaker = [
+    "sagemaker>=3.1.0",
+    "boto3>=1.34.0",
+    "pyyaml>=6.0",
+]
+all = [
+    "trl_jobs[sagemaker]",
+]
+
 [project.urls]
 homepage = "https://github.com/huggingface/trl-jobs"
 repository = "https://github.com/huggingface/trl-jobs"
 
 [project.scripts]
 trl-jobs = "trl_jobs.cli:main"
+trl-sagemaker = "trl_sagemaker.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["trl_jobs"]
+packages = ["trl_jobs", "trl_sagemaker"]
 include = [
   "trl_jobs/configs/*.yaml",
+  "trl_sagemaker/configs/models/*.yaml",
 ]
 
 [tool.hatch.build.targets.sdist]
 include = [
   "trl_jobs",
+  "trl_sagemaker",
   "README.md",
   "pyproject.toml",
 ]
