@@ -17,7 +17,10 @@ from trl_sagemaker.auth import get_session, validate_credentials
 
 # Default HuggingFace TRL training image
 
-DEFAULT_TRL_IMAGE = "763104351884.dkr.ecr.us-east-1.amazonaws.com/huggingface-pytorch-training:2.8.0-transformers4.56.2-gpu-py312-cu129-ubuntu22.04-v1.2" 
+#TODO: use the latest image
+#TODO: make it configurable
+DEFAULT_TRL_IMAGE = "763104351884.dkr.ecr.us-east-1.amazonaws.com/huggingface-pytorch-training:2.8.0-transformers4.56.2-gpu-py312-cu129-ubuntu22.04-v1.2"
+ 
 
 
 # Model-specific configurations mapping
