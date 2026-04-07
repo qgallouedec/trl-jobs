@@ -1,0 +1,47 @@
+# SageMaker SFT config for Qwen3-8B on ml.p4d.24xlarge (8x A100 40GB)
+# LoRA/PEFT configuration
+
+# Model arguments
+model_name_or_path: Qwen/Qwen3-8B
+model_revision: main
+torch_dtype: bfloat16
+attn_implementation: flash_attention_2
+
+# LoRA configuration
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+
+# Training arguments
+bf16: true
+gradient_accumulation_steps: 2
+gradient_checkpointing: true
+learning_rate: 2.0e-04
+lr_scheduler_type: cosine
+max_seq_length: 8192
+num_train_epochs: 1
+per_device_train_batch_size: 4
+warmup_ratio: 0.03
+max_grad_norm: 1.0
+
+# Data arguments
+packing: true
+dataset_num_proc: 16
+
+# Checkpointing
+save_strategy: steps
+save_steps: 100
+save_total_limit: 2
+
+# Logging
+logging_steps: 10
+report_to: trackio
+# hub_model_id: <username>/<space-name>  # Optional: specify TrackIO space

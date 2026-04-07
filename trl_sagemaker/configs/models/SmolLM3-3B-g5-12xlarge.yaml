@@ -1,0 +1,34 @@
+# SageMaker SFT config for SmolLM3-3B on ml.g5.12xlarge (4x A10G 24GB)
+# Full fine-tuning configuration
+
+# Model arguments
+model_name_or_path: HuggingFaceTB/SmolLM3-3B
+model_revision: main
+torch_dtype: bfloat16
+attn_implementation: flash_attention_2
+
+# Training arguments
+bf16: true
+gradient_accumulation_steps: 8
+gradient_checkpointing: true
+learning_rate: 2.0e-05
+lr_scheduler_type: cosine
+max_seq_length: 8192
+num_train_epochs: 1
+per_device_train_batch_size: 2
+warmup_ratio: 0.03
+max_grad_norm: 1.0
+
+# Data arguments
+packing: true
+dataset_num_proc: 16
+
+# Checkpointing
+save_strategy: steps
+save_steps: 100
+save_total_limit: 2
+
+# Logging
+logging_steps: 10
+report_to: trackio
+# hub_model_id: <username>/<space-name>  # Optional: specify TrackIO space
