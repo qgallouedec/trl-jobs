@@ -22,6 +22,8 @@ CONFIGS = {
     # Meta-Llama-3 peft
     ("meta-llama/Meta-Llama-3-8B", "a100-large", "peft"): "Meta-Llama-3-8B-a100-large-peft.yaml",
     ("meta-llama/Meta-Llama-3-8B-Instruct", "a100-large", "peft"): "Meta-Llama-3-8B-Instruct-a100-large-peft.yaml",
+    # Open GPT-OSS
+    ("openai/gpt-oss-20b", "a100-large", "peft"): "gpt-oss-20b-a100-large-peft.yaml",
     # Qwen3
     ("Qwen/Qwen3-0.6B-Base", "a100-large", "no_peft"): "Qwen3-0.6B-Base-a100-large.yaml",
     ("Qwen/Qwen3-0.6B", "a100-large", "no_peft"): "Qwen3-0.6B-a100-large.yaml",

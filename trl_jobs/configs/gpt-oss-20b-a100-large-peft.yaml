@@ -1,0 +1,40 @@
+# Model arguments
+model_name_or_path: openai/gpt-oss-20b
+model_revision: main
+torch_dtype: bfloat16
+attn_implementation: flash_attention_2
+use_peft: true
+
+# Data training arguments
+dataset_num_proc: 96
+
+# SFT trainer config
+bf16: true
+do_eval: false
+eval_strategy: 'no'
+gradient_accumulation_steps: 1
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+hub_strategy: every_save
+learning_rate: 2.0e-04
+log_level: warning
+logging_strategy: steps
+lr_scheduler_type: cosine_with_min_lr
+lr_scheduler_kwargs:
+  min_lr_rate: 0.1
+max_grad_norm: 0.2
+max_length: 4096
+output_dir: data/gpt-oss-20b-SFT
+overwrite_output_dir: true
+packing: true
+pad_to_multiple_of: 4096
+per_device_eval_batch_size: 1
+per_device_train_batch_size: 1
+push_to_hub: true
+report_to: trackio
+save_strategy: epoch
+save_total_limit: 1
+seed: 42
+# use_liger_kernel: true # liger not supported
+warmup_ratio: 0.03
